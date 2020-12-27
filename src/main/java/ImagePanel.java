@@ -43,27 +43,6 @@ public class ImagePanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(image, 50, 200, this); //drawing map
 
-        // drawing red circles to indicate location
-        g.setColor(Color.red);
-        // if (map.getCat() == "A") {
-        g.drawOval(60, 380, 50, 50);
-        //else if (map.getCat() == "B") {
-        g.drawOval(57,490,50,50);
-        //System.out.println("2");
-        // } else if (map.getCat() == "D") {
-        g.drawOval(260,492,50,50);
-        //System.out.println("4");
-        // } else if (map.getCat() == "E") {
-        g.drawOval(363,492,50,50);
-        // System.out.println("5");
-        //} else if (map.getCat() == "C") {
-        g.drawOval(60,605,50,50);
-        //System.out.println("3");
-        // } else if (map.getCat() == "F") {
-        g.drawOval(310, 630, 50, 50);
-        //System.out.println("6");
-        //  }
-
     }
 }
 
