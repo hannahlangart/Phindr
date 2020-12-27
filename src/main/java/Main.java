@@ -14,7 +14,6 @@ public class Main {
 
         MapUI mUI= new MapUI();
         frame.add(mUI.getMainPanel());
-
         frame.setVisible(true);
     }
 }
