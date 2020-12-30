@@ -8,6 +8,7 @@ import javax.swing.*;
 public class ImagePanel extends JPanel {
 
     private BufferedImage image;
+
     //public MapUI map;
 
     public ImagePanel() {
@@ -41,7 +42,8 @@ public class ImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 50, 200, this); //drawing map
+        //The getwidth and getheiht functions make this scalable to any monitor size.
+        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this); //drawing map
 
     }
 }
