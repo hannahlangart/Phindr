@@ -1,20 +1,24 @@
-import javax.imageio.ImageIO;
+import Locations.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.IOException;
 import java.util.Vector;
 
 public class MapUI extends JPanel {
 
     private JPanel mainPanel;
     private JPanel mapPanel;
+    private JPanel ShopLocationA; //each ShopLocaiton JPanel corresponds to a different shop map for each category
+    private JPanel ShopLocationB;
+    private JPanel ShopLocationC;
+    private JPanel ShopLocationD;
+    private JPanel ShopLocationE;
+    private JPanel ShopLocationF;
     public String cat;
+    static GraphicsConfiguration g;
 
     public MapUI() {
 
@@ -22,12 +26,15 @@ public class MapUI extends JPanel {
         GridLayout grid = new GridLayout(1, 2);
         mainPanel.setLayout(grid);
 
-
-
         mapPanel = new ImagePanel(); //panel with shop map
-        mapPanel.setOpaque(false);
-        //Graphics g= mapPanel.getGraphics();
+        mapPanel.setVisible(true);
 
+        ShopLocationA=new ShopLocationA(); //panel with shop map and location
+        ShopLocationB=new ShopLocationB();
+        ShopLocationC=new ShopLocationC();
+        ShopLocationD=new ShopLocationD();
+        ShopLocationE=new ShopLocationE();
+        ShopLocationF=new ShopLocationF();
 
         // Drop down list of all medicines available
         Vector<String> medname = new Vector<String>();
@@ -61,38 +68,38 @@ public class MapUI extends JPanel {
 
         // Giving category for selected medicine
         HashMap<String, String> hashMap = createHashMap();
-       // dummyFrame dummyFR = new dummyFrame();
 
-        //set a dummy Jframe to pop up when A is selected
-        JFrame A = new JFrame("A");
-        A.setSize(200,200);
+        //A new JFrame with map location pops up when A is selected, same for each category
+        JFrame A = new JFrame(g);
+        A.setSize(500,500);
         A.setAlwaysOnTop(true);
-        A.setBackground(Color.GRAY);
+        A.setTitle("Your chosen medicine location");
 
-        JFrame B = new JFrame("B ");
-        B.setSize(200,200);
+        JFrame B = new JFrame(g);
+        B.setSize(500,500);
         B.setAlwaysOnTop(true);
-        B.setBackground(Color.cyan);
+        B.setTitle("Your chosen medicine location");
 
-        JFrame C = new JFrame("C ");
-        C.setSize(200,200);
+        JFrame C = new JFrame(g);
+        C.setSize(500,500);
         C.setAlwaysOnTop(true);
-        C.setBackground(Color.magenta);
+        C.setTitle("Your chosen medicine location");
 
-        JFrame D = new JFrame("D ");
-        D.setSize(200,200);
+
+        JFrame D = new JFrame(g);
+        D.setSize(500,500);
         D.setAlwaysOnTop(true);
-        D.setBackground(Color.pink);
+        D.setTitle("Your chosen medicine location");
 
-        JFrame E = new JFrame("E ");
-        E.setSize(200,200);
+        JFrame E = new JFrame(g);
+        E.setSize(500,500);
         E.setAlwaysOnTop(true);
-        E.setBackground(Color.orange);
+        E.setTitle("Your chosen medicine location");
 
-        JFrame F = new JFrame("F ");
-        F.setSize(200,200);
+        JFrame F = new JFrame(g);
+        F.setSize(500,500);
         F.setAlwaysOnTop(true);
-        F.setBackground(Color.orange);
+        F.setTitle("Your chosen medicine location");
 
 
        ActionListener cbActionListener = new ActionListener() { //add actionlistener to listen for change
@@ -102,17 +109,19 @@ public class MapUI extends JPanel {
                 String s = (String) med.getSelectedItem();
                 //loop HashMap
                 for (Map.Entry<String, String> entry : hashMap.entrySet()) {
-                    if (s == entry.getKey().toString()) {
-                        cat = entry.getValue();
-                        System.out.println("Category is : " + cat);
+                    if (s == entry.getKey().toString()) { // compares medicine selected to medicines (Key) in HashMap
+                        cat = entry.getValue(); //cat is assigned the corresponding value from HashMap
+                        System.out.println("Category is : " + cat); //check category selected
                         if(cat=="A"){
-                            A.setVisible(true);//set the proper one to true and rest to false
+                            A.add(ShopLocationA);
+                            A.setVisible(true);//set the proper one with map location to true and rest to false
                             B.setVisible(false);
                             C.setVisible(false);
                             D.setVisible(false);
                             E.setVisible(false);
                             F.setVisible(false);
                         }else if (cat =="B"){
+                            B.add(ShopLocationB);
                             A.setVisible(false);
                             B.setVisible(true);
                             C.setVisible(false);
@@ -120,6 +129,7 @@ public class MapUI extends JPanel {
                             E.setVisible(false);
                             F.setVisible(false);
                         }else if (cat =="C"){
+                            C.add(ShopLocationC);
                             A.setVisible(false);
                             B.setVisible(false);
                             C.setVisible(true);
@@ -127,6 +137,7 @@ public class MapUI extends JPanel {
                             E.setVisible(false);
                             F.setVisible(false);
                         }else if (cat =="D"){
+                            D.add(ShopLocationD);
                             A.setVisible(false);
                             B.setVisible(false);
                             C.setVisible(false);
@@ -134,6 +145,7 @@ public class MapUI extends JPanel {
                             E.setVisible(false);
                             F.setVisible(false);
                         }else if (cat =="E"){
+                            E.add(ShopLocationE);
                             A.setVisible(false);
                             B.setVisible(false);
                             C.setVisible(false);
@@ -141,6 +153,7 @@ public class MapUI extends JPanel {
                             E.setVisible(true);
                             F.setVisible(false);
                         }else if (cat =="F"){
+                            F.add(ShopLocationF);
                             A.setVisible(false);
                             B.setVisible(false);
                             C.setVisible(false);
@@ -152,24 +165,7 @@ public class MapUI extends JPanel {
 
                 }
             }
-
-
         };
-
-
-       // drawing red circles to indicate location
-        /*g.setColor(Color.red);
-        else if (cat == "B") {
-        g.drawOval(57,490,50,50); }
-        else if (cat == "D") {
-        g.drawOval(260,492,50,50); }
-        else if (cat == "E") {
-        g.drawOval(363,492,50,50); }
-        else if (cat == "C") {
-        g.drawOval(60,605,50,50); }
-        else if (cat == "F") {
-        g.drawOval(310, 630, 50, 50); }*/
-
 
         med.addActionListener(cbActionListener);
         med.setVisible(true);
@@ -177,7 +173,7 @@ public class MapUI extends JPanel {
         mainPanel.add(mapPanel);
     }
 
-    private static HashMap<String, String> createHashMap() {
+    private static HashMap<String, String> createHashMap() { //HashMap allows to link each medicine (Key) to a category (Value)
                 HashMap<String, String> hashMap = new HashMap<String, String>();
                 hashMap.put("Dettol", "A");
                 hashMap.put("Elastoplast", "A");
@@ -209,9 +205,6 @@ public class MapUI extends JPanel {
     public JPanel getMainPanel() {
         return mainPanel;
     }
-
-
-
 }
 
 
