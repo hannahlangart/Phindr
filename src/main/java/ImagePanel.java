@@ -11,7 +11,7 @@ public class ImagePanel extends JPanel {
 
     public ImagePanel() {
         try {
-            image = ImageIO.read(new File("shop2original.png")); //path to shop map
+            image = ImageIO.read(new File("shop2original.png")); //path to original shop map
         } catch (IOException ex) {
             ex.printStackTrace();
         }
