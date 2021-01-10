@@ -11,7 +11,7 @@ public class MapUI extends JPanel {
 
     private JPanel mainPanel;
     private JPanel mapPanel;
-    private JPanel ShopLocationA; //each ShopLocaiton JPanel corresponds to a different shop map for each category
+    private JPanel ShopLocationA; //each ShopLocation JPanel corresponds to a different shop map for each category
     private JPanel ShopLocationB;
     private JPanel ShopLocationC;
     private JPanel ShopLocationD;
