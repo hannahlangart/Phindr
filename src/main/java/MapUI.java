@@ -21,8 +21,9 @@ public class MapUI extends JPanel {
     static GraphicsConfiguration g;
 
     public MapUI() {
-
-        mainPanel = new GradientPanel(); //panel with dropdown list
+        String path = "PhabPharmacyLogo.png";
+        mainPanel = new GradientPanel(path); //panel with dropdown list
+        mainPanel.setOpaque(false);
         GridLayout grid = new GridLayout(1, 2);
         mainPanel.setLayout(grid);
 

@@ -9,9 +9,9 @@ public class GradientPanel extends JPanel {
 
     private BufferedImage logo;
 
-    public GradientPanel() {
+    public GradientPanel(String path) {
         try {
-            logo = ImageIO.read(new File("PhabPharmacyLogo.png")); //path to Logo
+            logo = ImageIO.read(new File(path)); //path to Logo
         } catch (IOException ex) {
             ex.printStackTrace();
         }
